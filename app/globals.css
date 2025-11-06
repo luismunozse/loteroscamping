@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Estilos personalizados para el datepicker */
+.datepicker-custom {
+  position: relative;
+  background-color: #FFFFFF;
+}
+
+.datepicker-custom::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+  background: transparent;
+}
+
+.datepicker-custom::-webkit-datetime-edit {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.datepicker-custom::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.datepicker-custom::-webkit-datetime-edit-text {
+  color: #6B7280;
+  padding: 0 0.125rem;
+  font-weight: 400;
+}
+
+.datepicker-custom::-webkit-datetime-edit-month-field,
+.datepicker-custom::-webkit-datetime-edit-day-field,
+.datepicker-custom::-webkit-datetime-edit-year-field {
+  color: #111827;
+  padding: 0.375rem 0.625rem;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.datepicker-custom::-webkit-datetime-edit-month-field:focus,
+.datepicker-custom::-webkit-datetime-edit-day-field:focus,
+.datepicker-custom::-webkit-datetime-edit-year-field:focus {
+  background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+  outline: none;
+  color: #10B981;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+  transform: scale(1.05);
+}
+
+.datepicker-custom::-webkit-datetime-edit-month-field:hover,
+.datepicker-custom::-webkit-datetime-edit-day-field:hover,
+.datepicker-custom::-webkit-datetime-edit-year-field:hover {
+  background-color: #F3F4F6;
+  transform: scale(1.02);
+}
+
+/* Para Firefox */
+.datepicker-custom::-moz-placeholder {
+  color: #9CA3AF;
+}
+
+.datepicker-custom:focus {
+  outline: none;
+  border-color: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Mejora visual cuando hay fecha seleccionada */
+.datepicker-custom:not(:placeholder-shown) {
+  color: #111827;
+  font-weight: 500;
+}
+
+/* Mejoras adicionales para el input date */
+.datepicker-custom {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Estilos para el calendario en diferentes estados */
+.datepicker-custom:invalid {
+  color: #9CA3AF;
+}
+
+.datepicker-custom:valid {
+  color: #111827;
+}
+
+/* Mejora del contraste en los campos de fecha */
+.datepicker-custom::-webkit-datetime-edit-month-field:not(:focus),
+.datepicker-custom::-webkit-datetime-edit-day-field:not(:focus),
+.datepicker-custom::-webkit-datetime-edit-year-field:not(:focus) {
+  color: #111827;
+}
+
+/* Estilo mejorado para el separador de fecha */
+.datepicker-custom::-webkit-datetime-edit-text {
+  color: #6B7280;
+  font-weight: 400;
+  margin: 0 0.125rem;
+}
+
+/* Estilos mejorados para cuando el campo está activo */
+.datepicker-custom:active,
+.datepicker-custom:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+/* Mejora visual del input cuando tiene valor */
+.datepicker-custom:not([value=""]) {
+  background-color: #F9FAFB;
+  border-color: #10B981;
+}
+
+/* Estilos para mejorar la legibilidad en diferentes navegadores */
+.datepicker-custom {
+  font-family: inherit;
+  letter-spacing: 0.025em;
+}
+
+/* Mejora de accesibilidad - mejor contraste */
+.datepicker-custom::-webkit-datetime-edit-month-field[aria-required="true"],
+.datepicker-custom::-webkit-datetime-edit-day-field[aria-required="true"],
+.datepicker-custom::-webkit-datetime-edit-year-field[aria-required="true"] {
+  font-weight: 600;
+}
+

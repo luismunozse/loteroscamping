@@ -1,0 +1,14 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ['localhost', 'images.unsplash.com'],
+    unoptimized: false,
+  },
+  // Optimización para SEO
+  compress: true,
+  poweredByHeader: false,
+}
+
+module.exports = nextConfig
+
