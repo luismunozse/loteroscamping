@@ -18,7 +18,6 @@ export default function Navbar() {
   const navLinks = [
     { href: '#nosotros', label: 'Nosotros' },
     { href: '#servicios', label: 'Servicios' },
-    { href: '#reservar-bote', label: 'Alquilar Bote' },
     { href: '#ubicacion', label: 'Ubicación' },
   ]
 
@@ -42,22 +41,28 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
-            <div className="flex space-x-8">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            <nav className="flex items-center space-x-6 lg:space-x-8">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`font-medium transition-colors hover:text-nature-500 ${
+                  className={`font-medium text-sm lg:text-base transition-colors hover:text-nature-500 ${
                     isScrolled ? 'text-gray-700' : 'text-white'
                   }`}
                 >
                   {link.label}
                 </a>
               ))}
-            </div>
+            </nav>
+            {/* Separador visual */}
+            <div className={`h-6 w-px mx-2 ${
+              isScrolled ? 'bg-gray-300' : 'bg-white/30'
+            }`}></div>
             {/* Weather Widget */}
-            <WeatherWidget isScrolled={isScrolled} />
+            <div className="ml-2">
+              <WeatherWidget isScrolled={isScrolled} />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,13 +93,21 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 bg-white/95 backdrop-blur-md rounded-lg mt-2">
+          <div className="md:hidden pb-4 bg-white/95 backdrop-blur-md rounded-lg mt-2 shadow-lg">
+            {/* Weather Widget en móvil - al inicio */}
+            <div className="px-4 pt-3 pb-3 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-700">Clima</span>
+                <WeatherWidget isScrolled={true} />
+              </div>
+            </div>
+            {/* Enlaces de navegación */}
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-gray-700 hover:bg-nature-50 hover:text-nature-600 transition-colors"
+                className="block px-4 py-3 text-gray-700 hover:bg-nature-50 hover:text-nature-600 transition-colors font-medium"
               >
                 {link.label}
               </a>

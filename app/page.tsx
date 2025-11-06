@@ -3,7 +3,6 @@ import Hero from '@/components/Hero'
 import Services from '@/components/Services'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
-import BoatRental from '@/components/BoatRental'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <BoatRental />
       <Contact />
       <Footer />
     </main>

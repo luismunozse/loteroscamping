@@ -11,17 +11,19 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 text-gray-300">
       {/* Sección principal */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
           {/* Información del camping */}
           <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center">
               <span className="w-2 h-2 bg-nature-500 rounded-full mr-2"></span>
               Camping Lotero
             </h3>
-            <p className="text-gray-400 leading-relaxed mb-6">
+            <p className="text-gray-400 leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
+              Un oasis familiar a orillas del Lago San Roque. 
+              Disfrutá de la naturaleza en un ambiente tranquilo y seguro.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-3 sm:space-x-4">
               {/* WhatsApp */}
               <a
                 href={whatsappUrl}
@@ -80,17 +82,6 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="#reservar-bote" 
-                  className="text-gray-400 hover:text-nature-400 transition-colors duration-300 flex items-center group"
-                >
-                  <svg className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  Alquilar Bote
-                </a>
-              </li>
-              <li>
-                <a 
                   href="#ubicacion" 
                   className="text-gray-400 hover:text-nature-400 transition-colors duration-300 flex items-center group"
                 >
@@ -115,7 +106,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <div>
-                  <p className="text-white font-medium">Sr. Mauro</p>
+                  <p className="text-white font-medium">Mauricio</p>
                   <p className="text-gray-400 text-sm">Reservas y Consultas</p>
                 </div>
               </li>

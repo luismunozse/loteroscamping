@@ -102,60 +102,60 @@ export default function BoatRental() {
           ) : (
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* Paso 1: Selección de Servicio */}
-              <div className="p-8 border-b border-gray-200">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">¿Qué querés alquilar?</h3>
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div className="p-4 sm:p-6 md:p-8 border-b border-gray-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">¿Qué querés alquilar?</h3>
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <button
                     type="button"
                     onClick={() => handleServiceSelect('bote')}
-                    className={`p-6 rounded-2xl border-2 transition-all duration-300 text-left ${
+                    className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 text-left ${
                       selectedService === 'bote'
                         ? 'border-nature-500 bg-nature-50 shadow-lg'
                         : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-4xl">🚣</span>
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
+                      <span className="text-3xl sm:text-4xl">🚣</span>
                       {selectedService === 'bote' && (
-                        <div className="w-6 h-6 bg-nature-500 rounded-full flex items-center justify-center">
-                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 bg-nature-500 rounded-full flex items-center justify-center">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
                       )}
                     </div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-1">Alquiler de Bote</h4>
-                    <p className="text-gray-600 text-sm">Navegá el lago con nuestros botes</p>
+                    <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">Alquiler de Bote</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">Navegá el lago con nuestros botes</p>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => handleServiceSelect('dormi')}
-                    className={`p-6 rounded-2xl border-2 transition-all duration-300 text-left ${
+                    className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 text-left ${
                       selectedService === 'dormi'
                         ? 'border-nature-500 bg-nature-50 shadow-lg'
                         : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-4xl">🏠</span>
+                    <div className="flex items-center justify-between mb-2 sm:mb-3">
+                      <span className="text-3xl sm:text-4xl">🏠</span>
                       {selectedService === 'dormi' && (
-                        <div className="w-6 h-6 bg-nature-500 rounded-full flex items-center justify-center">
-                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 bg-nature-500 rounded-full flex items-center justify-center">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
                       )}
                     </div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-1">Alquiler de Dormi</h4>
-                    <p className="text-gray-600 text-sm">Bungalows cómodos para tu estadía</p>
+                    <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">Alquiler de Dormi</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">Bungalows cómodos para tu estadía</p>
                   </button>
                 </div>
 
                 {selectedService === 'bote' && (
-                  <div className="mt-6">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4">Tipo de Bote</h4>
-                    <div className="grid grid-cols-3 gap-3">
+                  <div className="mt-4 sm:mt-6">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Tipo de Bote</h4>
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
                       {[
                         { value: 'con-motor', label: 'Con Motor', icon: '⚙️' },
                         { value: 'sin-motor', label: 'Sin Motor', icon: '🚣' },
@@ -165,14 +165,14 @@ export default function BoatRental() {
                           key={type.value}
                           type="button"
                           onClick={() => handleBoteTypeSelect(type.value)}
-                          className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                          className={`p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 transition-all duration-300 ${
                             selectedBoteType === type.value
                               ? 'border-nature-500 bg-nature-50 shadow-md'
                               : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
-                          <div className="text-2xl mb-2">{type.icon}</div>
-                          <div className="text-sm font-medium text-gray-900">{type.label}</div>
+                          <div className="text-xl sm:text-2xl mb-1 sm:mb-2">{type.icon}</div>
+                          <div className="text-xs sm:text-sm font-medium text-gray-900 leading-tight">{type.label}</div>
                         </button>
                       ))}
                     </div>
@@ -189,9 +189,9 @@ export default function BoatRental() {
               </div>
 
               {/* Paso 2: Fecha y Personas */}
-              <div className="p-8 border-b border-gray-200">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">¿Cuándo y cuántos?</h3>
-                <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-4 sm:p-6 md:p-8 border-b border-gray-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">¿Cuándo y cuántos?</h3>
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-3">
                       {selectedService === 'dormi' ? 'Fecha de Ingreso' : 'Fecha'} *
@@ -204,7 +204,7 @@ export default function BoatRental() {
                           min={new Date().toISOString().split('T')[0]}
                           onFocus={() => setDateFocused(true)}
                           onBlur={() => setDateFocused(false)}
-                          className={`w-full px-4 py-4 pr-12 border-2 rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-lg font-medium cursor-pointer datepicker-custom transition-all duration-200 ${
+                          className={`w-full px-3 sm:px-4 py-3 sm:py-4 pr-10 sm:pr-12 border-2 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-base sm:text-lg font-medium cursor-pointer datepicker-custom transition-all duration-200 ${
                             fecha 
                               ? 'border-nature-500 bg-nature-50/50 hover:border-nature-600' 
                               : 'border-gray-200 hover:border-gray-300 bg-white'
@@ -365,15 +365,15 @@ export default function BoatRental() {
 
               {/* Paso 3: Formulario de Contacto */}
               {canProceed() && (
-                <div className="p-8 border-b border-gray-200">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Tus datos de contacto</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-4 sm:p-6 md:p-8 border-b border-gray-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Tus datos de contacto</h3>
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre *</label>
                       <input
                         type="text"
                         {...register('nombre', { required: 'El nombre es requerido' })}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-sm sm:text-base"
                         placeholder="Juan"
                       />
                       {errors.nombre && (
@@ -385,7 +385,7 @@ export default function BoatRental() {
                       <input
                         type="text"
                         {...register('apellido', { required: 'El apellido es requerido' })}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-sm sm:text-base"
                         placeholder="Pérez"
                       />
                       {errors.apellido && (
@@ -403,7 +403,7 @@ export default function BoatRental() {
                             message: 'Email inválido'
                           }
                         })}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-sm sm:text-base"
                         placeholder="juan@example.com"
                       />
                       {errors.email && (
@@ -415,7 +415,7 @@ export default function BoatRental() {
                       <input
                         type="tel"
                         {...register('telefono', { required: 'El teléfono es requerido' })}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-sm sm:text-base"
                         placeholder="+54 351 123 4567"
                       />
                       {errors.telefono && (
@@ -423,12 +423,12 @@ export default function BoatRental() {
                       )}
                     </div>
                   </div>
-                  <div className="mt-6">
+                  <div className="mt-4 sm:mt-6">
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Mensaje adicional (opcional)</label>
                     <textarea
                       {...register('mensaje')}
                       rows={3}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-sm sm:text-base resize-none"
                       placeholder="Comentarios o consultas adicionales..."
                     />
                   </div>
@@ -437,15 +437,15 @@ export default function BoatRental() {
 
               {/* Botón de Envío */}
               {canProceed() && (
-                <div className="p-8 bg-gray-50">
+                <div className="p-4 sm:p-6 md:p-8 bg-gray-50">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-nature-500 hover:bg-nature-600 disabled:bg-gray-400 text-white font-bold px-8 py-5 rounded-xl text-lg transition-all duration-300 transform hover:scale-[1.02] disabled:transform-none shadow-lg"
+                    className="w-full bg-nature-500 hover:bg-nature-600 disabled:bg-gray-400 text-white font-bold px-6 sm:px-8 py-4 sm:py-5 rounded-lg sm:rounded-xl text-base sm:text-lg transition-all duration-300 transform hover:scale-[1.02] disabled:transform-none shadow-lg"
                   >
                     {isSubmitting ? 'Enviando...' : selectedService === 'dormi' ? 'Reservar Dormi' : 'Reservar Bote'}
                   </button>
-                  <p className="text-sm text-gray-500 text-center mt-4">
+                  <p className="text-xs sm:text-sm text-gray-500 text-center mt-3 sm:mt-4">
                     * Campos requeridos. Nos pondremos en contacto contigo para confirmar la reserva.
                   </p>
                 </div>

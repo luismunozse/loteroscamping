@@ -169,3 +169,13 @@ body {
   font-weight: 600;
 }
 
+/* Ocultar el texto del datepicker cuando hay valor para mostrar solo la fecha formateada */
+.datepicker-custom:not([value=""])::-webkit-datetime-edit-text,
+.datepicker-custom:not([value=""])::-webkit-datetime-edit-month-field,
+.datepicker-custom:not([value=""])::-webkit-datetime-edit-day-field,
+.datepicker-custom:not([value=""])::-webkit-datetime-edit-year-field {
+  opacity: 0;
+  width: 0;
+  padding: 0;
+}
+
