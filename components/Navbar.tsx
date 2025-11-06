@@ -33,7 +33,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <a
             href="/"
-            className={`text-2xl font-bold transition-colors ${
+            className={`text-xl sm:text-2xl font-bold transition-colors ${
               isScrolled ? 'text-gray-900' : 'text-white'
             }`}
           >
@@ -65,42 +65,42 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 transition-colors ${
-              isScrolled ? 'text-gray-900' : 'text-white'
-            }`}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {/* Mobile: Weather Widget + Menu Button */}
+          <div className="md:hidden flex items-center space-x-3">
+            {/* Weather Widget visible en móvil */}
+            <div className="flex items-center">
+              <WeatherWidget isScrolled={isScrolled} />
+            </div>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`p-2 transition-colors ${
+                isScrolled ? 'text-gray-900' : 'text-white'
+              }`}
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMobileMenuOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4 bg-white/95 backdrop-blur-md rounded-lg mt-2 shadow-lg">
-            {/* Weather Widget en móvil - al inicio */}
-            <div className="px-4 pt-3 pb-3 border-b border-gray-200">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-700">Clima</span>
-                <WeatherWidget isScrolled={true} />
-              </div>
-            </div>
             {/* Enlaces de navegación */}
             {navLinks.map((link) => (
               <a
