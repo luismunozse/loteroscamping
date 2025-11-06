@@ -106,10 +106,15 @@ export default function Hero() {
 
     if (showDatePicker) {
       document.addEventListener('mousedown', handleClickOutside)
+      // Prevenir scroll del body cuando el calendario está abierto en móvil
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
+      document.body.style.overflow = 'unset'
     }
   }, [showDatePicker])
 
@@ -226,8 +231,17 @@ export default function Hero() {
                     </div>
                   </button>
                   {showDatePicker && activeDateField === (searchType === 'dormi' ? 'checkin' : 'fecha') && (
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-50 lg:left-auto lg:right-0 lg:transform-none">
-                      <DatePicker
+                    <>
+                      {/* Overlay oscuro en móvil */}
+                      <div 
+                        className="fixed inset-0 bg-black/50 z-40 sm:hidden"
+                        onClick={() => {
+                          setShowDatePicker(false)
+                          setActiveDateField(null)
+                        }}
+                      />
+                      <div className="fixed sm:absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:translate-y-0 sm:top-full sm:mt-2 z-50 lg:left-auto lg:right-0 lg:transform-none w-[calc(100vw-2rem)] sm:w-auto max-w-[calc(100vw-2rem)] sm:max-w-none">
+                        <DatePicker
                         checkIn={checkIn}
                         checkOut={searchType === 'dormi' ? checkOut : undefined}
                         onCheckInChange={(date) => {
@@ -248,7 +262,8 @@ export default function Hero() {
                         disabled={false}
                         isSingleDate={searchType === 'bote'}
                       />
-                    </div>
+                      </div>
+                    </>
                   )}
                 </div>
 
@@ -293,8 +308,17 @@ export default function Hero() {
                       </div>
                     </button>
                     {showDatePicker && activeDateField === 'checkout' && (
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-50 lg:left-auto lg:right-0 lg:transform-none">
-                        <DatePicker
+                      <>
+                        {/* Overlay oscuro en móvil */}
+                        <div 
+                          className="fixed inset-0 bg-black/50 z-40 sm:hidden"
+                          onClick={() => {
+                            setShowDatePicker(false)
+                            setActiveDateField(null)
+                          }}
+                        />
+                        <div className="fixed sm:absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:translate-y-0 sm:top-full sm:mt-2 z-50 lg:left-auto lg:right-0 lg:transform-none w-[calc(100vw-2rem)] sm:w-auto max-w-[calc(100vw-2rem)] sm:max-w-none">
+                          <DatePicker
                           checkIn={checkIn}
                           checkOut={checkOut}
                           onCheckInChange={setCheckIn}
@@ -306,7 +330,8 @@ export default function Hero() {
                           minDate={getMinCheckout()}
                           disabled={!checkIn}
                         />
-                      </div>
+                        </div>
+                      </>
                     )}
                   </div>
                 ) : (
@@ -366,21 +391,49 @@ export default function Hero() {
                     Personas
                   </label>
                   <div className="relative">
-                    <select
-                      value={guests}
-                      onChange={(e) => setGuests(e.target.value)}
-                      className="w-full px-4 py-4 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-nature-500 focus:border-nature-500 text-sm sm:text-base font-semibold appearance-none bg-white hover:border-gray-400 transition-colors cursor-pointer"
-                    >
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
-                        <option key={num} value={num.toString()}>
-                          {num} {num === 1 ? 'persona' : 'personas'}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg className="w-5 h-5 text-gray-400 group-hover:text-nature-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
+                    <div className="flex items-center border border-gray-300 rounded-xl bg-white hover:border-gray-400 transition-colors focus-within:ring-2 focus-within:ring-nature-500 focus-within:border-nature-500">
+                      {/* Botón menos */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const num = parseInt(guests)
+                          if (num > 1) {
+                            setGuests((num - 1).toString())
+                          }
+                        }}
+                        disabled={parseInt(guests) <= 1}
+                        className="p-3 sm:p-4 text-gray-600 hover:text-nature-600 disabled:text-gray-300 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+                        aria-label="Disminuir personas"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                        </svg>
+                      </button>
+                      
+                      {/* Valor y texto */}
+                      <div className="flex-1 text-center px-2 sm:px-4">
+                        <span className="text-sm sm:text-base font-semibold text-gray-900">
+                          {guests} {parseInt(guests) === 1 ? 'persona' : 'personas'}
+                        </span>
+                      </div>
+                      
+                      {/* Botón más */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const num = parseInt(guests)
+                          if (num < 10) {
+                            setGuests((num + 1).toString())
+                          }
+                        }}
+                        disabled={parseInt(guests) >= 10}
+                        className="p-3 sm:p-4 text-gray-600 hover:text-nature-600 disabled:text-gray-300 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+                        aria-label="Aumentar personas"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                      </button>
                     </div>
                   </div>
                 </div>

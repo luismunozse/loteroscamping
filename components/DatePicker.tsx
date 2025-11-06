@@ -32,7 +32,6 @@ export default function DatePicker({
   }
 
   const [currentMonth, setCurrentMonth] = useState(getInitialMonth())
-  const [selectedType, setSelectedType] = useState<'checkin' | 'checkout'>('checkin')
 
   const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
   const daysOfWeek = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
@@ -110,7 +109,6 @@ export default function DatePicker({
     // Si no hay check-in, establecer check-in
     if (!checkIn) {
       onCheckInChange(fullDate)
-      setSelectedType('checkout')
       return
     }
 
@@ -161,19 +159,19 @@ export default function DatePicker({
 
     return (
       <div className="w-full">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2 sm:mb-3 lg:mb-4">
           {monthOffset === 0 && (
             <button
               onClick={getPrevMonth}
               className="p-1 hover:bg-gray-100 rounded transition-colors"
               disabled={disabled}
             >
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
           )}
-          <h3 className="text-base font-semibold text-gray-900 flex-1 text-center">
+          <h3 className="text-sm sm:text-base font-semibold text-gray-900 flex-1 text-center px-2">
             {monthName} de {year}
           </h3>
           {monthOffset === 1 && (
@@ -182,23 +180,23 @@ export default function DatePicker({
               className="p-1 hover:bg-gray-100 rounded transition-colors"
               disabled={disabled}
             >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           )}
-          {monthOffset === 0 && <div className="w-9"></div>}
+          {monthOffset === 0 && <div className="w-6 sm:w-9"></div>}
         </div>
 
-        <div className="grid grid-cols-7 mb-2">
+        <div className="grid grid-cols-7 mb-1 sm:mb-2">
           {daysOfWeek.map((day) => (
-            <div key={day} className="text-center text-xs font-medium text-gray-600 py-2">
+            <div key={day} className="text-center text-xs font-medium text-gray-600 py-1 sm:py-2">
               {day}
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-7">
+        <div className="grid grid-cols-7 gap-0.5 sm:gap-0">
           {days.map((day, index) => {
             const isSelected = day.fullDate && isDateSelected(day.fullDate)
             const inRange = day.fullDate && isDateInRange(day.fullDate)
@@ -211,7 +209,7 @@ export default function DatePicker({
                 onClick={() => day.isSelectable && day.fullDate && handleDateClick(day.fullDate)}
                 disabled={!day.isSelectable}
                 className={`
-                  aspect-square flex items-center justify-center text-sm font-medium transition-all
+                  aspect-square flex items-center justify-center text-xs sm:text-sm font-medium transition-all rounded
                   ${!day.isCurrentMonth 
                     ? 'text-gray-300 cursor-default' 
                     : !day.isSelectable
@@ -234,37 +232,14 @@ export default function DatePicker({
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200 w-full max-w-[700px]">
-      {/* Tabs de navegación */}
-      <div className="flex items-center gap-2 mb-6 bg-gray-100 rounded-lg p-1">
-        <button
-          onClick={() => setSelectedType('checkin')}
-          className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${
-            selectedType === 'checkin'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600'
-          }`}
-        >
-          Fechas
-        </button>
-        <button
-          className="flex-1 px-4 py-2 rounded-md text-sm font-medium text-gray-600 cursor-not-allowed"
-          disabled
-        >
-          Meses
-        </button>
-        <button
-          className="flex-1 px-4 py-2 rounded-md text-sm font-medium text-gray-600 cursor-not-allowed"
-          disabled
-        >
-          Flexible
-        </button>
-      </div>
+    <div className="bg-white rounded-2xl shadow-xl p-3 sm:p-4 lg:p-6 border border-gray-200 w-full max-w-[700px] max-h-[90vh] overflow-y-auto">
 
-      {/* Calendarios lado a lado */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      {/* Calendarios - Solo uno en móvil, dos en desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12">
         {renderCalendar(0)}
-        {renderCalendar(1)}
+        <div className="hidden lg:block">
+          {renderCalendar(1)}
+        </div>
       </div>
     </div>
   )
